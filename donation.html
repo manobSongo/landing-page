@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation | The Human Life Truth</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="donation.html" class="active">Donation</a></li>
+            <li><a href="preview.html">Book Preview</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="donation">
+            <div class="content">
+                <h1>Three Lives Need Your Help</h1>
+                <div class="heartbeat-animation">❤️</div>
+                <p class="lead">Three precious lives are in danger. We reach out to you with hope in our hearts.</p>
+                
+                <div class="donation-message">
+                    <p>Your donation is a lifeline, a chance for them to live. Every act of giving brings them closer to safety, further from despair.</p>
+                    <p class="highlight">Please, find it in your heart to donate today. Give the gift of life.</p>
+                </div>
+                
+                <div class="donation-form">
+                    <h3>From which country are you donating?</h3>
+                    <select id="country-select" class="styled-select">
+                        <option value="">Select Country</option>
+                        <option value="US">United States</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="AU">Australia</option>
+                        <option value="CA">Canada</option>
+                        <option value="EU">Europe (SEPA)</option>
+                        <option value="Other">Other Countries</option>
+                    </select>
+
+                    <div id="bank-details" class="bank-details-wrapper">
+                        <!-- Bank details will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Manob Songo. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('country-select').addEventListener('change', function() {
+            const selectedCountry = this.value;
+            const bankDetailsDiv = document.getElementById('bank-details');
+            bankDetailsDiv.innerHTML = ''; // Clear previous details
+
+            function createDetailRow(label, value) {
+                return `
+                    <div class="detail-row">
+                        <span class="detail-label"><strong>${label}:</strong></span>
+                        <span class="detail-value">${value}</span>
+                        <button class="copy-btn" data-value="${value}">Copy</button>
+                    </div>
+                `;
+            }
+
+            if (selectedCountry === 'US') {
+                bankDetailsDiv.innerHTML = `
+                    <div class="bank-details-container fade-in">
+                        <h3>USD Account Details</h3>
+                        ${createDetailRow('Name', 'Khaleda Khatun')}
+                        ${createDetailRow('Account number', '8312573818')}
+                        ${createDetailRow('Account type', 'Checking')}
+                        ${createDetailRow('Routing number (for wire and ACH)', '026073150')}
+                        ${createDetailRow('Swift/BIC', 'CMFGUS33')}
+                        ${createDetailRow('Bank name and address', 'Community Federal Savings Bank, 89-16 Jamaica Ave, Woodhaven, NY, 11421, United States')}
+                    </div>
+                `;
+            } else if (selectedCountry === 'EU') {
+                bankDetailsDiv.innerHTML = `
+                    <div class="bank-details-container fade-in">
+                        <h3>EUR Account Details</h3>
+                        ${createDetailRow('Name', 'Khaleda Khatun')}
+                        ${createDetailRow('IBAN', 'BE47 9674 7753 2780')}
+                        ${createDetailRow('Swift/BIC', 'TRWIBEB1XXX')}
+                        ${createDetailRow('Bank name and address', 'Wise, Rue du Trône 100, 3rd floor, Brussels, 1050, Belgium')}
+                    </div>
+                `;
+            } else if (selectedCountry === 'AU') {
+                bankDetailsDiv.innerHTML = `
+                    <div class="bank-details-container fade-in">
+                        <h3>AUD Account Details</h3>
+                        ${createDetailRow('Name', 'Khaleda Khatun')}
+                        ${createDetailRow('Account number', '206170097')}
+                        ${createDetailRow('BSB code', '774001')}
+                        ${createDetailRow('Swift/BIC', 'TRWIAUS1XXX')}
+                        ${createDetailRow('Bank name and address', 'Wise Australia Pty Ltd, Suite 1, Level 11, 66 Goulburn Street, Sydney, NSW, 2000, Australia')}
+                    </div>
+                `;
+            } else if (selectedCountry === 'GB') {
+                bankDetailsDiv.innerHTML = `
+                    <div class="bank-details-container fade-in">
+                        <h3>GBP Account Details</h3>
+                        ${createDetailRow('Name', 'Khaleda Khatun')}
+                        ${createDetailRow('Account number', '95922445')}
+                        ${createDetailRow('Sort code', '23-14-70')}
+                        ${createDetailRow('IBAN', 'GB91 TRWI 2314 7095 9224 45')}
+                        ${createDetailRow('Swift/BIC', 'TRWIGB2LXXX')}
+                        ${createDetailRow('Bank name and address', 'Wise Payments Limited, 56 Shoreditch High Street, London, E1 6JJ, United Kingdom')}
+                    </div>
+                `;
+            } else if (selectedCountry === 'CA') {
+                bankDetailsDiv.innerHTML = `
+                    <div class="bank-details-container fade-in">
+                        <h3>CAD Account Details</h3>
+                        ${createDetailRow('Name', 'Khaleda Khatun')}
+                        ${createDetailRow('Account number', '200116026724')}
+                        ${createDetailRow('Institution number', '621')}
+                        ${createDetailRow('Transit number', '16001')}
+                        ${createDetailRow('Swift/BIC', 'TRWICAW1XXX')}
+                        ${createDetailRow('Bank name and address', 'Wise Payments Canada Inc., 99 Bank Street, Suite 1420, Ottawa, ON, K1P 1H4, Canada')}
+                    </div>
+                `;
+            } else if (selectedCountry === 'Other') {
+                bankDetailsDiv.innerHTML = `
+                    <div class="bank-details-container fade-in">
+                        <h3>Other Countries</h3>
+                        <p class="bank-subtitle">(Swift Transfer UK Bank £)</p>
+                        <p class="bank-info">For AED, BGN, CHF, CNY, CZK, DKK, HKD, HUF, ILS, JPY, NOK, NZD, PLN, SEK, SGD, TRY, UGX, ZAR, and 130+ other countries.</p>
+                        ${createDetailRow('Name', 'Khaleda Khatun')}
+                        ${createDetailRow('IBAN', 'GB91 TRWI 2314 7095 9224 45')}
+                        ${createDetailRow('Swift/BIC', 'TRWIGB2LXXX')}
+                        ${createDetailRow('Bank name and address', 'Wise Payments Limited, 56 Shoreditch High Street, London, E1 6JJ, United Kingdom')}
+                    </div>
+                `;
+            }
+
+            // Add event listeners to copy buttons
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+                    navigator.clipboard.writeText(value);
+                    
+                    // Change button text temporarily for user feedback
+                    const originalText = this.textContent;
+                    this.textContent = 'Copied!';
+                    this.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
